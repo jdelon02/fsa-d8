@@ -1,0 +1,22 @@
+uuid: 04d506b9-5eaf-4961-9afe-1e60a92d2972
+langcode: en
+status: true
+dependencies:
+  theme:
+    - adminimal_bot
+_core:
+  default_config_hash: IE2xUhXCIpNg0rC7jPTqYyorzoDnC-tEwnQZUUc7DcQ
+id: adminimal_bot_primary_local_tasks
+theme: adminimal_bot
+region: header
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: false
+visibility: {  }

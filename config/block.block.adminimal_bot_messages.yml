@@ -1,0 +1,22 @@
+uuid: a89c087a-f129-4c42-b572-b48bf0930a12
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - adminimal_bot
+_core:
+  default_config_hash: mValarU2wAcff2vS9TETOq_cYs7X0zKiHcrmmRfoS_8
+id: adminimal_bot_messages
+theme: adminimal_bot
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

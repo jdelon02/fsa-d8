@@ -1,0 +1,22 @@
+uuid: e06b2ac3-da9b-4f4e-a4f2-6b1c17a6919f
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - bot_custom
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: bot_custom_help
+theme: bot_custom
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }
