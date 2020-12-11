@@ -3,7 +3,7 @@ status: true
 dependencies:
   module:
     - paragraphs_library
-    - paragraphs_viewmode
+    - paragraph_view_mode
 third_party_settings:
   paragraphs_library:
     allow_library_conversion: true
@@ -13,7 +13,7 @@ icon_uuid: null
 icon_default: null
 description: 'Responsive grid layout that adjusts at different viewport widths.'
 behavior_plugins:
-  paragraphs_viewmode_behavior:
+  paragraph_view_mode_behavior:
     override_mode: default
     override_available:
       default: Default

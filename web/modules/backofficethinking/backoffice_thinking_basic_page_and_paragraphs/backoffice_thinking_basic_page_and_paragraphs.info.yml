@@ -28,7 +28,7 @@ dependencies:
   - options
   - paragraphs
   - paragraphs_library
-  - paragraphs_viewmode
+  - paragraph_view_mode
   - path
   - rdf
   - slick_entityreference
