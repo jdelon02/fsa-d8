@@ -12,9 +12,3 @@ label: 'Image Grid'
 icon_uuid: null
 icon_default: null
 description: 'Responsive grid layout that adjusts at different viewport widths.'
-behavior_plugins:
-  paragraph_view_mode_behavior:
-    override_mode: default
-    override_available:
-      default: Default
-    override_default: default
