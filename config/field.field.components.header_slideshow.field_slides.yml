@@ -1,0 +1,27 @@
+uuid: 25f0d8b7-f9d8-4e5d-8373-14c499ba55a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.components.header_slideshow
+    - field.storage.components.field_slides
+id: components.header_slideshow.field_slides
+field_name: field_slides
+entity_type: components
+bundle: header_slideshow
+label: Slides
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:components'
+  handler_settings:
+    target_bundles:
+      header_slideshow: header_slideshow
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

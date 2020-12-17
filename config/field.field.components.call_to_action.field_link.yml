@@ -1,0 +1,23 @@
+uuid: bfc2a25e-e655-45f5-bb07-94afa9ed035c
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.components.call_to_action
+    - field.storage.components.field_link
+  module:
+    - link
+id: components.call_to_action.field_link
+field_name: field_link
+entity_type: components
+bundle: call_to_action
+label: Link
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

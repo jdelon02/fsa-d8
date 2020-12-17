@@ -1,0 +1,11 @@
+uuid: c222a88e-3ecd-4525-b95e-014aab79069a
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.components
+_core:
+  default_config_hash: g5ixc5TXRm9EccwUd4a1KYVx3UlgosR1OkwTL9DrILQ
+type: view_block
+name: 'View Block'
+description: 'Use for displaying a view block.'

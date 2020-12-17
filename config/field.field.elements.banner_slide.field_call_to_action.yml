@@ -1,0 +1,23 @@
+uuid: 54e14711-1381-4fb4-9665-886cfce64f9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.elements.banner_slide
+    - field.storage.elements.field_call_to_action
+  module:
+    - link
+id: elements.banner_slide.field_call_to_action
+field_name: field_call_to_action
+entity_type: elements
+bundle: banner_slide
+label: 'Call to Action'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

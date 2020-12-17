@@ -1,0 +1,11 @@
+uuid: d90799ea-cb1c-4226-87f8-74fb35c468d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.components
+_core:
+  default_config_hash: asJFHgiETuZR8kCS_lORt6H5B_DcdeNiKU9J2C68KMg
+type: testimonial
+name: Testimonial
+description: 'This is the testimonial component'

@@ -1,0 +1,51 @@
+uuid: fa4c7d61-946f-4947-bf40-80223d9fb7e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.elements.testimonial
+    - field.field.elements.testimonial.field_description
+    - field.field.elements.testimonial.field_testimonial_author
+  module:
+    - field_layout
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+_core:
+  default_config_hash: YUNdtFL8x6IS06wxYq8qwnBlIfHLBeJfLOKTC0d050E
+id: elements.testimonial.default
+targetEntityType: elements
+bundle: testimonial
+mode: default
+content:
+  field_description:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_testimonial_author:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

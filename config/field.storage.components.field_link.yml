@@ -1,0 +1,21 @@
+uuid: b6c8347d-3c66-44c4-bdb0-8605724f4009
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - link
+_core:
+  default_config_hash: KYoytDTCnSaPtirJSB_yfxZZ3-t1LbZHBd6L9m8Pguc
+id: components.field_link
+field_name: field_link
+entity_type: components
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

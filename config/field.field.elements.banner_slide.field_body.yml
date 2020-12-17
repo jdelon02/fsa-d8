@@ -1,0 +1,30 @@
+uuid: 9e170e1c-f82e-4b4f-b1fb-db7a47bb4be1
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.elements.banner_slide
+    - field.storage.elements.field_body
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    plain: '0'
+    simple: '0'
+    restricted_html: '0'
+    full_html: '0'
+    plain_text: '0'
+id: elements.banner_slide.field_body
+field_name: field_body
+entity_type: elements
+bundle: banner_slide
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

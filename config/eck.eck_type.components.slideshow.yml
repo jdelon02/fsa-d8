@@ -1,0 +1,9 @@
+uuid: ae278565-b3bb-40b2-849d-a72f8de2cba1
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.components
+type: slideshow
+name: Slideshow
+description: 'Slideshow, image and text description'

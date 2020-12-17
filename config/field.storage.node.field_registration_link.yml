@@ -1,0 +1,21 @@
+uuid: ac98177f-38e8-460f-b7a5-00d709fc6fbb
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+_core:
+  default_config_hash: ny3hYpNa4xWL0hflPH3sVJpI3M96bdLkQlWkdD0IOJc
+id: node.field_registration_link
+field_name: field_registration_link
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

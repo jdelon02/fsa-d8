@@ -1,0 +1,21 @@
+uuid: 5c4907ed-d7c9-4008-abb6-eaae93c6dd43
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - text
+_core:
+  default_config_hash: m2AE6albgimLiSsI_qz9tzaKTinNMMPuBP7FmkWUASA
+id: elements.field_headline_intro
+field_name: field_headline_intro
+entity_type: elements
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

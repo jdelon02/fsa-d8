@@ -1,0 +1,9 @@
+uuid: 0a2ea8c0-9e44-4fe6-89d1-fe7b12834cbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.elements
+type: slide
+name: Slide
+description: ''

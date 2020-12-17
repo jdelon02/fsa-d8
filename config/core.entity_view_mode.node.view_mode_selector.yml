@@ -1,0 +1,12 @@
+uuid: e058423d-f482-4e29-963f-0ed9b9dfb9c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+_core:
+  default_config_hash: SQW0b7efgS8dQgv5Rz7HqXM3ZRuJGeVBTkAKkENGYUc
+id: node.view_mode_selector
+label: 'View mode selector'
+targetEntityType: node
+cache: true

@@ -1,0 +1,12 @@
+uuid: bf608618-0cfe-4b4d-9de6-8e5fccc23084
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+_core:
+  default_config_hash: O0SXRIyvLIdL6ueZXzEaeDhVt2Uy9MyY98YzcSTUWOY
+id: elements.card_background_image
+label: 'Card Background Image'
+targetEntityType: elements
+cache: true

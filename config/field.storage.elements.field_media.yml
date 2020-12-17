@@ -1,0 +1,20 @@
+uuid: 946db523-5e17-4be8-99ab-ba486006a103
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - media
+id: elements.field_media
+field_name: field_media
+entity_type: elements
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

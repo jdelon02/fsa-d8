@@ -1,0 +1,9 @@
+uuid: b6ebb39e-ef5b-4b4a-86b9-78632f34883b
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.components
+type: call_to_action
+name: 'Call To Action'
+description: ''

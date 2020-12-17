@@ -1,0 +1,20 @@
+uuid: 2022f255-be5f-4db2-8075-4829dfe69953
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - media
+id: elements.field_imagee
+field_name: field_imagee
+entity_type: elements
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

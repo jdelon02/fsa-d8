@@ -1,0 +1,19 @@
+uuid: c6346810-bc0d-48d0-8bf2-1d3af0b33832
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+_core:
+  default_config_hash: JVjF5VSqSfoDl3We0f1d4dxaoawPSRG_7EEU8EnjLiY
+name: Event
+type: event
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

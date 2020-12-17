@@ -1,0 +1,12 @@
+uuid: fca82027-1e3b-41de-9626-1fade91280fc
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+_core:
+  default_config_hash: pMV8BFKslv4wP5hY9jUIOOPY0LK03WTEXkJfP_MTuns
+id: paragraph.wide_width
+label: 'Wide Width'
+targetEntityType: paragraph
+cache: true

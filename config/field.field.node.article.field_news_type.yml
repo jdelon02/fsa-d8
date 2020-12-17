@@ -1,0 +1,33 @@
+uuid: 2d7a52ad-6fcd-44c1-8d82-11314646d5b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_news_type
+    - node.type.article
+    - taxonomy.vocabulary.news_type
+_core:
+  default_config_hash: 6VzZWGCkoYCFD3gNKp3KyvE-Ui8YB5a9uxBUVzJe6_4
+id: node.article.field_news_type
+field_name: field_news_type
+entity_type: node
+bundle: article
+label: 'News Type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 512b8f84-5ca4-44db-99b6-df96789887ac
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      news_type: news_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

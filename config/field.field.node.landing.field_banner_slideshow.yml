@@ -1,0 +1,28 @@
+uuid: e8a59c26-795c-4a2f-8f02-862c849c174b
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.components.header_slideshow
+    - field.storage.node.field_banner_slideshow
+    - node.type.landing
+id: node.landing.field_banner_slideshow
+field_name: field_banner_slideshow
+entity_type: node
+bundle: landing
+label: 'Banner Slideshow'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:components'
+  handler_settings:
+    target_bundles:
+      header_slideshow: header_slideshow
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

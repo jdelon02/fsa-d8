@@ -1,0 +1,11 @@
+uuid: 74e73dbc-020e-49d9-bccf-f19a0ab5f5ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.components
+_core:
+  default_config_hash: O181q17a54Y0sTsA6IlR5308VEa5ub2pjTnwRVqq0BM
+type: link_cards
+name: 'Link Cards'
+description: ''

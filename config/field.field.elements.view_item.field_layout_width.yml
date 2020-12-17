@@ -1,0 +1,33 @@
+uuid: f67df460-4ae1-4b3e-8a8e-6cce2eef98b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.elements.view_item
+    - field.storage.elements.field_layout_width
+    - taxonomy.vocabulary.layout_width
+_core:
+  default_config_hash: UboMrK9yOZV0o7bLkQ00PK-sNmXjVI79zF4G2VxpK6o
+id: elements.view_item.field_layout_width
+field_name: field_layout_width
+entity_type: elements
+bundle: view_item
+label: 'Layout Width'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: cbe76c71-4017-4c48-a59c-5ef7013e3619
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      layout_width: layout_width
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

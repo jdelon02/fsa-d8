@@ -1,0 +1,23 @@
+uuid: fa290ac0-b67b-4fc1-b592-cd7f5e15c6f9
+langcode: en
+status: false
+dependencies:
+  theme:
+    - bot_custom
+_core:
+  default_config_hash: too51JYFyJ40T9ZeC0E_4P2env3MmVRVtg_OGEJ0_Tg
+id: footeraddress
+theme: bot_custom
+region: footer_four
+weight: -8
+provider: null
+plugin: 'block_content:389efed2-27ff-4855-ae0f-87c40a532517'
+settings:
+  id: 'block_content:389efed2-27ff-4855-ae0f-87c40a532517'
+  label: 'Footer - Address'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

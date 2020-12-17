@@ -1,0 +1,12 @@
+uuid: 04be5d0d-1590-44d4-8fa1-056e1cf2b02a
+langcode: en
+status: true
+dependencies: {  }
+id: widescreen_crop
+label: 'Widescreen Crop'
+description: 'Meant for images that should be cropped and rendered in 16:9 ratio.'
+aspect_ratio: '16:9'
+soft_limit_width: null
+soft_limit_height: null
+hard_limit_width: 1920
+hard_limit_height: 1080

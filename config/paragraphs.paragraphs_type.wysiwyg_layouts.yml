@@ -1,0 +1,18 @@
+uuid: 52ec9822-34fc-4778-99eb-e9291ae9a337
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraph_view_mode
+third_party_settings:
+  paragraph_view_mode:
+    label: 'Paragraph Layout'
+    enabled: true
+_core:
+  default_config_hash: xt9aDYNiQUpF0Z5OFxuR1MoISsM09I-BU6jRWbYHQO0
+id: wysiwyg_layouts
+label: 'Text with Image Float'
+icon_uuid: null
+icon_default: null
+description: 'Paragraphs that allow for Image and Text to be displayed together.'
+behavior_plugins: {  }

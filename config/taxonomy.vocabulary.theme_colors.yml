@@ -1,0 +1,10 @@
+uuid: 88925990-cff8-463b-b4d0-e47e5ee34a1c
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: ChSdK5IrgDN2eFdi208-Ms9dly49T4i5D8Np3lg3UDM
+name: 'Theme Colors'
+vid: theme_colors
+description: ''
+weight: 0

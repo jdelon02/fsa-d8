@@ -1,0 +1,25 @@
+uuid: 8141e9fc-117e-4f52-a145-127ef19f3fdf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_title_banner_button
+    - node.type.landing
+  module:
+    - link
+_core:
+  default_config_hash: yxdgWW1qgaJQEWXlJgM2InZLbgdw5aZ1v3dYF1aGY1Q
+id: node.landing.field_title_banner_button
+field_name: field_title_banner_button
+entity_type: node
+bundle: landing
+label: 'Title Banner Button'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

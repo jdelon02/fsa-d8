@@ -1,0 +1,10 @@
+uuid: 336b8bbb-06a3-444e-b4aa-c47cef618ad7
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.cinemascope_21_9
+label: 'Cinemascope (21:9)'
+targetEntityType: media
+cache: true

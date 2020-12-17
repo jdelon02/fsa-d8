@@ -1,0 +1,28 @@
+uuid: a7045e93-ed05-4d3d-bc7e-9a4bd3b5f61b
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.elements.banner_slide
+    - field.storage.elements.field_media
+    - media.type.image
+id: elements.banner_slide.field_media
+field_name: field_media
+entity_type: elements
+bundle: banner_slide
+label: Media
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

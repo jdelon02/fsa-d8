@@ -1,0 +1,71 @@
+uuid: eca1bb60-6970-4bb3-95bc-d706177deb51
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.components.link_cards
+    - field.field.components.link_cards.field_headline
+    - field.field.components.link_cards.field_layout_width
+    - field.field.components.link_cards.field_link_card
+  module:
+    - entity_browser_entity_form
+    - field_layout
+    - inline_entity_form
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+_core:
+  default_config_hash: GQP5C1KMhDpmObv6ogmBVS3yd4sEX5-3Ng1vkQmlr7w
+id: components.link_cards.default
+targetEntityType: components
+bundle: link_cards
+mode: default
+content:
+  field_headline:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_layout_width:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_link_card:
+    weight: 2
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      allow_duplicate: true
+      revision: false
+      override_labels: false
+      collapsible: false
+      collapsed: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

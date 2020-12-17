@@ -1,0 +1,9 @@
+uuid: 06a14e87-f4bc-47c4-81d9-23f93c913b6c
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.components
+type: header_slideshow
+name: 'Banner Slider'
+description: ''

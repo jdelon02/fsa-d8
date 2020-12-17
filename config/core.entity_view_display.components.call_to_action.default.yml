@@ -1,0 +1,79 @@
+uuid: e6226c80-2270-42cd-b160-51668676854d
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.components.call_to_action
+    - field.field.components.call_to_action.field_description
+    - field.field.components.call_to_action.field_image
+    - field.field.components.call_to_action.field_link
+  module:
+    - ds
+    - link
+    - text
+third_party_settings:
+  ds:
+    layout:
+      id: bs_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        layout:
+          wrapper: div
+          classes:
+            row: row
+          add_layout_class: 1
+          attributes: ''
+        regions:
+          main:
+            wrapper: div
+            classes:
+              col-sm-12: col-sm-12
+            add_region_classes: 1
+            attributes: ''
+    regions:
+      main:
+        - field_image
+        - field_description
+        - field_link
+id: components.call_to_action.default
+targetEntityType: components
+bundle: call_to_action
+mode: default
+content:
+  field_description:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: main
+  field_image:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: square_1_1
+      link: false
+    third_party_settings: {  }
+    region: main
+  field_link:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: main
+hidden:
+  changed: true
+  created: true
+  search_api_excerpt: true
+  title: true
+  uid: true

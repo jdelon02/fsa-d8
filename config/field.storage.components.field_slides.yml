@@ -1,0 +1,19 @@
+uuid: 24bfec6e-7947-41d6-84d1-c5bb91eb8bcf
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: components.field_slides
+field_name: field_slides
+entity_type: components
+type: entity_reference
+settings:
+  target_type: components
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

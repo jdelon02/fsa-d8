@@ -1,0 +1,12 @@
+uuid: 6e729b0c-5576-46e1-a2a5-945e665d9e93
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: zeMqywIV-eu8AqL1d14F4y43lSEqhYa2vFJ-_flKt7o
+id: header_closed_dates
+label: 'Header closed dates'
+icon_uuid: null
+icon_default: null
+description: 'Migrated from field_collection field_header_closed_dates'
+behavior_plugins: {  }

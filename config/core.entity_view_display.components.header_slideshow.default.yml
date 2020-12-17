@@ -1,0 +1,38 @@
+uuid: 7ad6dd93-3528-42df-b617-6728fcbdb9d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.components.header_slideshow
+    - field.field.components.header_slideshow.field_slides
+  module:
+    - slick_entityreference
+id: components.header_slideshow.default
+targetEntityType: components
+bundle: header_slideshow
+mode: default
+content:
+  field_slides:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: ''
+      optionset: default
+      override: false
+      overridables: {  }
+      skin: ''
+      skin_arrows: ''
+      skin_dots: ''
+      cache: 0
+      current_view_mode: ''
+      fx: ''
+      style: ''
+    third_party_settings: {  }
+    type: slick_entityreference_vanilla
+    region: content
+hidden:
+  changed: true
+  created: true
+  search_api_excerpt: true
+  title: true
+  uid: true

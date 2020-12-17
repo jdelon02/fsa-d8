@@ -1,0 +1,10 @@
+uuid: 741a46f1-6a94-47cb-8f1f-d96eb86b8c26
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: pZEeWqRN7kcTdRJrrJWbSU5k8l8psKcK3MQ4eKaBbmY
+name: 'Title Display Options'
+vid: title_display_options
+description: ''
+weight: 0

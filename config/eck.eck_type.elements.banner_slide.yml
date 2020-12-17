@@ -1,0 +1,9 @@
+uuid: 107ceb47-10bc-47af-a1f0-23fe8ce6d6db
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.elements
+type: banner_slide
+name: 'Banner Slide'
+description: ''

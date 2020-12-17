@@ -1,0 +1,87 @@
+uuid: 887a2738-da05-4f36-b722-84a0e1b67562
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.elements.banner_slide
+    - field.field.elements.banner_slide.field_body
+    - field.field.elements.banner_slide.field_call_to_action
+    - field.field.elements.banner_slide.field_media
+  module:
+    - ds
+    - link
+    - text
+third_party_settings:
+  ds:
+    layout:
+      id: bs_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+        layout:
+          wrapper: div
+          classes:
+            row: row
+          add_layout_class: 1
+          attributes: ''
+        regions:
+          main:
+            wrapper: div
+            classes:
+              col-sm-12: col-sm-12
+            add_region_classes: 1
+            attributes: ''
+    regions:
+      main:
+        - field_media
+        - title
+        - field_body
+        - field_call_to_action
+id: elements.banner_slide.default
+targetEntityType: elements
+bundle: banner_slide
+mode: default
+content:
+  field_body:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: main
+  field_call_to_action:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: main
+  field_media:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: main
+  title:
+    label: hidden
+    type: string
+    weight: 1
+    region: main
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  changed: true
+  created: true
+  search_api_excerpt: true
+  uid: true

@@ -1,0 +1,20 @@
+uuid: b24b5858-13c5-46ee-b8f8-1ddb292e65d8
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: JTTqZwJG43BtEtYO1QwCaTYfvtNghN-fTmGWsxp7H5g
+name: Person
+type: person
+description: ''
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

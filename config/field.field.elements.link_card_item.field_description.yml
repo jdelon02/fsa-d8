@@ -1,0 +1,23 @@
+uuid: 9ffc7823-858f-48f4-b085-f39daf83330d
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.elements.link_card_item
+    - field.storage.elements.field_description
+  module:
+    - text
+_core:
+  default_config_hash: o_iPgZuegvmAUnV0F3X8bNhWerz773-HU4cKpHQT2_A
+id: elements.link_card_item.field_description
+field_name: field_description
+entity_type: elements
+bundle: link_card_item
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

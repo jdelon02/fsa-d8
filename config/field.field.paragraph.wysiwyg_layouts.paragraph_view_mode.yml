@@ -1,0 +1,21 @@
+uuid: be6b9717-0f46-4e44-8cb4-ac62505aa8b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.paragraph_view_mode
+    - paragraphs.paragraphs_type.wysiwyg_layouts
+  module:
+    - paragraph_view_mode
+id: paragraph.wysiwyg_layouts.paragraph_view_mode
+field_name: paragraph_view_mode
+entity_type: paragraph
+bundle: wysiwyg_layouts
+label: 'Paragraph Layout'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: paragraph_view_mode

@@ -1,0 +1,52 @@
+uuid: 5d91d119-abe7-4c57-b3e6-7a234e69f711
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.components.header_slideshow
+    - field.field.components.header_slideshow.field_slides
+  module:
+    - entity_browser_entity_form
+    - field_layout
+    - inline_entity_form
+    - layout_discovery
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: components.header_slideshow.default
+targetEntityType: components
+bundle: header_slideshow
+mode: default
+content:
+  field_slides:
+    weight: 1
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      revision: false
+      override_labels: false
+      collapsible: false
+      collapsed: false
+      allow_duplicate: false
+    third_party_settings:
+      entity_browser_entity_form:
+        entity_browser_id: _none
+    type: inline_entity_form_complex
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true

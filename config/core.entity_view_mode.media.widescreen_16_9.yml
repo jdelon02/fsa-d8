@@ -1,0 +1,10 @@
+uuid: aeb04b7f-4a12-45e1-8b2c-200d4dbf3049
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.widescreen_16_9
+label: 'Widescreen (16:9)'
+targetEntityType: media
+cache: true

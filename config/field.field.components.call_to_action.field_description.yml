@@ -1,0 +1,30 @@
+uuid: 845350d3-66a7-4aaf-9c96-ead8ed344c21
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.components.call_to_action
+    - field.storage.components.field_description
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    basic_html: basic_html
+    plain: '0'
+    simple: '0'
+    restricted_html: '0'
+    full_html: '0'
+    plain_text: '0'
+id: components.call_to_action.field_description
+field_name: field_description
+entity_type: components
+bundle: call_to_action
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

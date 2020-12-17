@@ -1,0 +1,23 @@
+uuid: 5c691e2d-12ec-4bcf-abc9-4a347e3659cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.components.link_cards
+    - field.storage.components.field_headline
+  module:
+    - text
+_core:
+  default_config_hash: 9lQClnV6c3NeV-bkT3Ip-4E8oz9qkoUgFfzGarb-dFE
+id: components.link_cards.field_headline
+field_name: field_headline
+entity_type: components
+bundle: link_cards
+label: Headline/Intro
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

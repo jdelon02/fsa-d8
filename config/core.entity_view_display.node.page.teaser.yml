@@ -5,10 +5,15 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.page.body
+    - field.field.node.page.field_meta_tags
+    - field.field.node.page.field_page_options
+    - field.field.node.page.field_paragraphs
+    - field.field.node.page.field_title_banner_button
+    - field.field.node.page.field_title_banner_headline
+    - field.field.node.page.field_title_banner_media
     - node.type.page
   module:
     - field_layout
-    - layout_discovery
     - text
     - user
 third_party_settings:
@@ -34,4 +39,10 @@ content:
   links:
     weight: 101
     region: content
-hidden: {  }
+hidden:
+  field_meta_tags: true
+  field_page_options: true
+  field_paragraphs: true
+  field_title_banner_button: true
+  field_title_banner_headline: true
+  field_title_banner_media: true

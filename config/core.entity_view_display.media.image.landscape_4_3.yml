@@ -1,0 +1,35 @@
+uuid: cd9e7356-1e76-451c-b853-ad77eeb7a1f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.landscape_4_3
+    - field.field.media.image.field_media_image
+    - media.type.image
+    - responsive_image.styles.landscape_4_3
+  module:
+    - field_layout
+    - svg_image_responsive
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: media.image.landscape_4_3
+targetEntityType: media
+bundle: image
+mode: landscape_4_3
+content:
+  field_media_image:
+    label: visually_hidden
+    settings:
+      responsive_image_style: landscape_4_3
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+    weight: 1
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

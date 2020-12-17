@@ -9,7 +9,7 @@ _core:
 id: bot_custom_local_actions
 theme: bot_custom
 region: content
-weight: -20
+weight: -8
 provider: null
 plugin: local_actions_block
 settings:

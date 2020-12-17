@@ -1,0 +1,59 @@
+uuid: 5c77babc-7428-440f-89fe-5a23aa150b69
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.components.call_to_action
+    - field.field.components.call_to_action.field_description
+    - field.field.components.call_to_action.field_image
+    - field.field.components.call_to_action.field_link
+  module:
+    - field_layout
+    - layout_discovery
+    - link
+    - media_library
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: components.call_to_action.default
+targetEntityType: components
+bundle: call_to_action
+mode: default
+content:
+  field_description:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_image:
+    type: media_library_widget
+    weight: 2
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
+  field_link:
+    weight: 3
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  uid: true
