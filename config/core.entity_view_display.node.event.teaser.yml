@@ -5,9 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.event.body
+    - field.field.node.event.field_body_para
+    - field.field.node.event.field_email
     - field.field.node.event.field_event_date
     - field.field.node.event.field_event_type
     - field.field.node.event.field_meta_tags
+    - field.field.node.event.field_phone
     - field.field.node.event.field_photo
     - field.field.node.event.field_registration_link
     - image.style.listing_image
@@ -247,6 +250,10 @@ content:
             lb-col: false
             classes: {  }
 hidden:
+  field_body_para: true
+  field_email: true
   field_meta_tags: true
+  field_phone: true
   field_registration_link: true
   links: true
+  search_api_excerpt: true

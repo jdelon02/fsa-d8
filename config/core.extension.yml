@@ -49,6 +49,8 @@ module:
   contextual: 0
   crop: 0
   ctools: 0
+  date_group: 0
+  date_range_formatter: 0
   datetime: 0
   datetime_range: 0
   dblog: 0
@@ -94,6 +96,7 @@ module:
   metatag: 0
   module_filter: 0
   node: 0
+  optional_end_date: 0
   options: 0
   page_cache: 0
   paragraph_view_mode: 0

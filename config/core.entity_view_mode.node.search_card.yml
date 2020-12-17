@@ -1,0 +1,10 @@
+uuid: fb6fdd76-f4cb-48f7-854e-0a0c67b24fa4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.search_card
+label: 'Search Card'
+targetEntityType: node
+cache: true

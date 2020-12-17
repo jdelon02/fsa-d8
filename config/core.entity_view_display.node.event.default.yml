@@ -4,17 +4,22 @@ status: true
 dependencies:
   config:
     - field.field.node.event.body
+    - field.field.node.event.field_body_para
+    - field.field.node.event.field_email
     - field.field.node.event.field_event_date
     - field.field.node.event.field_event_type
     - field.field.node.event.field_meta_tags
+    - field.field.node.event.field_phone
     - field.field.node.event.field_photo
     - field.field.node.event.field_registration_link
     - node.type.event
   module:
     - button_link
-    - datetime_range
+    - date_group
     - ds
+    - entity_reference_revisions
     - metatag
+    - telephone
     - text
     - user
 third_party_settings:
@@ -47,6 +52,10 @@ third_party_settings:
         - field_registration_link
         - field_photo
         - body
+        - field_meta_tags
+        - field_email
+        - field_phone
+        - field_body_para
     fields:
       node_title:
         plugin_id: node_title
@@ -77,26 +86,36 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: main
+  field_body_para:
+    type: entity_reference_revisions_entity_view
+    weight: 9
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: main
+  field_email:
+    weight: 7
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: main
   field_event_date:
     weight: 1
-    label: inline
+    label: hidden
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: event_date
       separator: to
-    third_party_settings:
-      ds:
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-    type: daterange_default
+      time_separator: ':'
+    third_party_settings: {  }
+    type: date_group
     region: main
   field_event_type:
     weight: 2
-    label: inline
+    label: hidden
     settings:
       link: true
     third_party_settings:
@@ -132,11 +151,19 @@ content:
     region: main
   field_meta_tags:
     weight: 6
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: metatag_empty_formatter
-    region: content
+    region: main
+  field_phone:
+    weight: 8
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    type: telephone_link
+    region: main
   field_photo:
     type: entity_reference_entity_view
     weight: 4
@@ -180,3 +207,4 @@ content:
     region: main
 hidden:
   links: true
+  search_api_excerpt: true
