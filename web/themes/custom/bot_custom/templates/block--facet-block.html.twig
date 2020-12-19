@@ -1,0 +1,104 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Available variables:
+ * - $block->subject: Block title.
+ * - $content: Block content.
+ * - $block->module: Module that generated the block.
+ * - $block->delta: An ID for the block, unique within each module.
+ * - $block->region: The block region embedding the current block.
+ * - $classes: String of classes that can be used to style contextually through
+ *   CSS. It can be manipulated through the variable $classes_array from
+ *   preprocess functions. The default values can be one or more of the
+ *   following:
+ *   - block: The current template type, i.e., "theming hook".
+ *   - block-[module]: The module generating the block. For example, the user
+ *     module is responsible for handling the default user navigation block. In
+ *     that case the class would be 'block-user'.
+ * - $title_prefix (array): An array containing additional output populated by
+ *   modules, intended to be displayed in front of the main title tag that
+ *   appears in the template.
+ * - $title_suffix (array): An array containing additional output populated by
+ *   modules, intended to be displayed after the main title tag that appears in
+ *   the template.
+ *
+ * Helper variables:
+ * - $classes_array: Array of html class attribute values. It is flattened
+ *   into a string within the variable $classes.
+ * - $block_zebra: Outputs 'odd' and 'even' dependent on each block region.
+ * - $zebra: Same output as $block_zebra but independent of any block region.
+ * - $block_id: Counter dependent on each block region.
+ * - $id: Same output as $block_id but independent of any block region.
+ * - $is_front: Flags true when presented in the front page.
+ * - $logged_in: Flags true when the current user is a logged-in member.
+ * - $is_admin: Flags true when the current user is an administrator.
+ * - $block_html_id: A valid HTML ID and guaranteed unique.
+ *
+ * @ingroup templates
+ *
+ * @see bootstrap_preprocess_block()
+ * @see template_preprocess()
+ * @see template_preprocess_block()
+ * @see bootstrap_process_block()
+ * @see template_process()
+ */
+#}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'clearfix',
+  ]
+%}
+{% set trigger = '' %}
+{# Not a collapse. No classes applied, normal block (default). #}
+{% if not 'collapseme' in attributes %}
+  {% set trigger = 'default' %}
+{% endif %}
+
+{% if label and attributes.hasClass('collapseme') %}
+  {# Collapsed but open by Default.  Should be designated with class of "showall." Needs Label field to work. #}
+  {% if attributes.hasClass('showall') and not attributes.hasClass('showdesk') %}
+    {% set trigger = 'showall' %}
+  {% endif %}
+  {# Collapsed, but open on desktop. Should be designated with class of "showdesk." Needs Label field to work. #}
+  {% if attributes.hasClass('showdesk') and not attributes.hasClass('showall') %}
+    {% set trigger = 'showdesk' %}
+  {% endif %}
+  {# Collapsed on all. Should be designated with class of "collapseme." Needs Label field to work. #}
+  {% if not attributes.hasClass('showall') and not attributes.hasClass('showdesk') %}
+    {% set trigger = 'collapseme' %}
+  {% endif %}
+{% endif %}
+
+
+    <section{{ attributes.addClass(classes) }}>
+      {{ title_prefix }}
+      {% if trigger == 'showall' %}
+        <button{{ title_attributes.addClass('btn btn-primary block-title') }} type="button" data-toggle="collapse" data-target="#{{ plugin_id|clean_class }}" aria-expanded="true" aria-controls="{{ plugin_id|clean_class }}">{{ label }}</button>
+      {% elseif trigger == 'showdesk' %}
+        <button{{ title_attributes.addClass('btn btn-primary block-title') }} type="button" data-toggle="collapse" data-target="#{{ plugin_id|clean_class }}" aria-expanded="true" aria-controls="{{ plugin_id|clean_class }}">{{ label }}</button>
+      {% elseif trigger == 'collapseme' %}
+        <button{{ title_attributes.addClass('btn btn-primary block-title') }} type="button" data-toggle="collapse" data-target="#{{ plugin_id|clean_class }}" aria-expanded="false" aria-controls="{{ plugin_id|clean_class }}">{{ label }}</button>
+      {% else %}
+        {% if label %}
+          <h2{{ title_attributes.addClass('block-title') }}>{{ label }}</h2>
+        {% endif %}
+      {% endif %}
+      {{ title_suffix }}
+
+      {% block content %}
+        {% if trigger == 'showall' %}
+          <div class="collapse in showall" id="{{ plugin_id|clean_class }}">{{ content }}</div>
+        {% elseif trigger == 'showdesk' %}
+          <div class="collapse in showdesk" id="{{ plugin_id|clean_class }}">{{ content }}</div>
+        {% elseif trigger == 'collapseme' %}
+          <div class="collapse" id="{{ plugin_id|clean_class }}">{{ content }}</div>
+        {% else %}
+          {{ content }}
+        {% endif %}
+      {% endblock %}
+    </section>
