@@ -1,0 +1,23 @@
+uuid: b3de6bd3-d09f-40c6-9fb7-2bc5032cf7eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_image_boolean
+    - node.type.event
+id: node.event.field_image_boolean
+field_name: field_image_boolean
+entity_type: node
+bundle: event
+label: 'Has Image?'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

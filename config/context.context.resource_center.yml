@@ -1,0 +1,83 @@
+uuid: 3eee4869-b08c-4c39-9eb1-a7904f94e252
+langcode: en
+status: true
+dependencies: {  }
+name: resource_center
+label: 'Resource Center'
+group: 'BOT Custom'
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  view_inclusion:
+    id: view_inclusion
+    negate: null
+    uuid: 77b02802-21b7-4efc-b03c-03618ef6b694
+    view_inclusion:
+      view-resource_center-page_1: view-resource_center-page_1
+    context_mapping: {  }
+reactions:
+  blocks:
+    blocks:
+      01d080b5-fd5c-4110-860e-06d4d1fef6f4:
+        id: 'facet_block:reference_topics'
+        label: 'Resource Topics'
+        provider: facets
+        label_display: visible
+        region: sidebar_first
+        weight: '1'
+        context_mapping: {  }
+        custom_id: facet_block_reference_topics
+        theme: bot_custom
+        css_class: ''
+        unique: 0
+        context_id: resource_center
+        uuid: 01d080b5-fd5c-4110-860e-06d4d1fef6f4
+      e65bae9a-baa3-4c5c-8c2c-eddd0faaa09e:
+        id: 'facet_block:resource_type'
+        label: 'Resource Type'
+        provider: facets
+        label_display: visible
+        region: sidebar_first
+        weight: '0'
+        context_mapping: {  }
+        custom_id: facet_block_resource_type
+        theme: bot_custom
+        css_class: ''
+        unique: 0
+        context_id: resource_center
+        uuid: e65bae9a-baa3-4c5c-8c2c-eddd0faaa09e
+      b7148245-e1d7-4aad-8c8b-bf4a8a2c7c6c:
+        id: 'views_exposed_filter_block:resource_center-page_1'
+        label: ''
+        provider: views
+        label_display: '0'
+        views_label: ''
+        region: sidebar_first
+        weight: '-1'
+        context_mapping: {  }
+        custom_id: views_exposed_filter_block_resource_center_page_1
+        theme: bot_custom
+        css_class: ''
+        unique: 0
+        context_id: resource_center
+        uuid: b7148245-e1d7-4aad-8c8b-bf4a8a2c7c6c
+      459e0040-70c9-4d55-9f47-7b43c2512f29:
+        id: 'facet_block:resource_media_type'
+        label: 'Media type'
+        provider: facets
+        label_display: visible
+        region: sidebar_first
+        weight: '2'
+        context_mapping: {  }
+        custom_id: facet_block_resource_media_type
+        theme: bot_custom
+        css_class: ''
+        unique: 0
+        context_id: resource_center
+        uuid: 459e0040-70c9-4d55-9f47-7b43c2512f29
+    id: blocks
+    saved: false
+    uuid: 3eb75c43-4f21-4eb7-8a04-1e58d68a58e0
+    include_default_blocks: 1
+weight: 0

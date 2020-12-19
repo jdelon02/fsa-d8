@@ -5,6 +5,11 @@ dependencies:
   config:
     - field.storage.node.field_paragraphs
     - node.type.resource
+    - paragraphs.paragraphs_type.image_grid
+    - paragraphs.paragraphs_type.slideshow
+    - paragraphs.paragraphs_type.standalone_image_paragraph
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.wysiwyg_layouts
   module:
     - entity_reference_revisions
 _core:
@@ -23,27 +28,38 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     negate: 0
-    target_bundles: null
+    target_bundles:
+      image_grid: image_grid
+      slideshow: slideshow
+      standalone_image_paragraph: standalone_image_paragraph
+      text: text
+      wysiwyg_layouts: wysiwyg_layouts
     target_bundles_drag_drop:
       from_library:
         weight: 8
         enabled: false
-      image_grid:
-        weight: 9
+      header_closed_dates:
+        weight: 11
         enabled: false
+      header_hours:
+        weight: 12
+        enabled: false
+      image_grid:
+        enabled: true
+        weight: 9
       slide:
         weight: 10
         enabled: false
       slideshow:
+        enabled: true
         weight: 11
-        enabled: false
       standalone_image_paragraph:
+        enabled: true
         weight: 12
-        enabled: false
       text:
+        enabled: true
         weight: 13
-        enabled: false
       wysiwyg_layouts:
+        enabled: true
         weight: 14
-        enabled: false
 field_type: entity_reference_revisions

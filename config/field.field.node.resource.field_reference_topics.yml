@@ -1,0 +1,29 @@
+uuid: 63f41d26-c4bd-486b-8fb0-b9c15cb3fe85
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reference_topics
+    - node.type.resource
+    - taxonomy.vocabulary.resource_topics
+id: node.resource.field_reference_topics
+field_name: field_reference_topics
+entity_type: node
+bundle: resource
+label: 'Reference Topics'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      resource_topics: resource_topics
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

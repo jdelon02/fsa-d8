@@ -1,0 +1,41 @@
+uuid: e20c7400-870f-4b75-b18d-1707003a305b
+langcode: en
+status: true
+dependencies: {  }
+name: events_landing
+label: 'Events Landing'
+group: 'BOT Custom'
+description: ''
+requireAllConditions: false
+disabled: false
+conditions:
+  view_inclusion:
+    id: view_inclusion
+    negate: null
+    uuid: 757c8b24-95fe-4a1f-aba3-fc49f84cc5e2
+    view_inclusion:
+      view-events_search_api-page_1: view-events_search_api-page_1
+    context_mapping: {  }
+reactions:
+  blocks:
+    blocks:
+      ca880319-0c29-4e32-bba8-ef19244d8299:
+        id: 'views_exposed_filter_block:events_search_api-page_1'
+        label: ''
+        provider: views
+        label_display: '0'
+        views_label: ''
+        region: content_top
+        weight: '0'
+        context_mapping: {  }
+        custom_id: views_exposed_filter_block_events_search_api_page_1
+        theme: bot_custom
+        css_class: ''
+        unique: 0
+        context_id: events_landing
+        uuid: ca880319-0c29-4e32-bba8-ef19244d8299
+    id: blocks
+    saved: false
+    uuid: 1f97fd07-9151-4eb6-bcad-3f66ff2c1f00
+    include_default_blocks: 1
+weight: 0

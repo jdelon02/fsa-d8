@@ -1,8 +1,9 @@
-uuid: ef9d2498-2793-40e6-978a-17a4798de0cc
+uuid: 364c24ab-acb9-4d05-a535-68cd7dbaf467
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.search_card
     - field.field.node.event.body
     - field.field.node.event.field_body_para
     - field.field.node.event.field_email
@@ -15,13 +16,8 @@ dependencies:
     - field.field.node.event.field_registration_link
     - node.type.event
   module:
-    - button_link
-    - date_group
     - ds
     - entity_class_formatter
-    - entity_reference_revisions
-    - metatag
-    - telephone
     - text
     - user
 third_party_settings:
@@ -48,21 +44,15 @@ third_party_settings:
             attributes: ''
     regions:
       main:
-        - node_title
-        - field_event_date
         - field_event_type
-        - field_registration_link
-        - field_photo
+        - node_title
         - body
-        - field_meta_tags
-        - field_email
-        - field_phone
-        - field_body_para
+        - field_photo
         - field_image_boolean
     fields:
       node_title:
         plugin_id: node_title
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
         settings:
@@ -77,47 +67,20 @@ third_party_settings:
             classes: {  }
 _core:
   default_config_hash: P9Mb0FAbp0PvPYAQw9EXJiGArla58uFER-eeQaYbmuY
-id: node.event.default
+id: node.event.search_card
 targetEntityType: node
 bundle: event
-mode: default
+mode: search_card
 content:
   body:
     label: hidden
     type: text_default
-    weight: 5
+    weight: 2
     settings: {  }
     third_party_settings: {  }
-    region: main
-  field_body_para:
-    type: entity_reference_revisions_entity_view
-    weight: 9
-    label: hidden
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    region: main
-  field_email:
-    weight: 7
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
-    region: main
-  field_event_date:
-    weight: 1
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: event_date
-      separator: to
-      time_separator: ':'
-    third_party_settings: {  }
-    type: date_group
     region: main
   field_event_type:
-    weight: 2
+    weight: 0
     label: hidden
     settings:
       link: true
@@ -153,7 +116,7 @@ content:
     type: entity_reference_label
     region: main
   field_image_boolean:
-    weight: 10
+    weight: 4
     label: hidden
     settings:
       prefix: ''
@@ -162,62 +125,21 @@ content:
     third_party_settings: {  }
     type: entity_class_formatter
     region: main
-  field_meta_tags:
-    weight: 6
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: metatag_empty_formatter
-    region: main
-  field_phone:
-    weight: 8
-    label: hidden
-    settings:
-      title: ''
-    third_party_settings: {  }
-    type: telephone_link
-    region: main
   field_photo:
     type: entity_reference_entity_view
-    weight: 4
-    region: main
-    label: hidden
-    settings:
-      view_mode: widescreen_16_9
-      link: false
-    third_party_settings:
-      ds:
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-  field_registration_link:
     weight: 3
+    region: main
     label: hidden
     settings:
-      link_text: Register
-      btn_type: btn-default
-      btn_size: ''
-      icon_class: ''
-      trim_length: '80'
-      target: _blank
-      disable_btn_role: 0
-      btn_block: 0
-      url_only: 0
-      url_plain: 0
-      rel: 0
-    third_party_settings:
-      ds:
-        ft:
-          id: default
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-    type: button_link
-    region: main
+      view_mode: landscape_4_3
+      link: false
+    third_party_settings: {  }
 hidden:
+  field_body_para: true
+  field_email: true
+  field_event_date: true
+  field_meta_tags: true
+  field_phone: true
+  field_registration_link: true
   links: true
   search_api_excerpt: true

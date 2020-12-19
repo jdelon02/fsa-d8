@@ -1,0 +1,10 @@
+uuid: ea4cabf8-13ba-436f-9191-1868814e4f71
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.download_link
+label: download_link
+targetEntityType: media
+cache: true

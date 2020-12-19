@@ -8,12 +8,14 @@ dependencies:
     - field.field.node.event.field_email
     - field.field.node.event.field_event_date
     - field.field.node.event.field_event_type
+    - field.field.node.event.field_image_boolean
     - field.field.node.event.field_meta_tags
     - field.field.node.event.field_phone
     - field.field.node.event.field_photo
     - field.field.node.event.field_registration_link
     - node.type.event
   module:
+    - conditional_fields
     - datetime_range
     - field_layout
     - layout_discovery
@@ -38,7 +40,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 5
+    weight: 6
     settings:
       rows: 9
       summary_rows: 3
@@ -48,13 +50,13 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   field_body_para:
     type: entity_reference_paragraphs
-    weight: 8
+    weight: 9
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -65,7 +67,7 @@ content:
     third_party_settings: {  }
     region: content
   field_email:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -73,40 +75,81 @@ content:
     type: email_default
     region: content
   field_event_date:
-    weight: 7
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
     region: content
   field_event_type:
-    weight: 4
+    weight: 5
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
+  field_image_boolean:
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings:
+      conditional_fields: {  }
+    type: boolean_checkbox
+    region: content
   field_meta_tags:
-    weight: 15
+    weight: 16
     settings:
       sidebar: true
     third_party_settings: {  }
     type: metatag_firehose
     region: content
   field_phone:
-    weight: 3
+    weight: 4
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: telephone_default
     region: content
   field_photo:
-    weight: 1
+    weight: 2
     settings:
       media_types: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        8c352081-bf5a-44e6-974a-e29aa94dda59:
+          dependee: field_image_boolean
+          settings:
+            state: visible
+            condition: checked
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: event
+        0f78b668-4a52-408d-a856-5abafd6d9d7a:
+          dependee: field_image_boolean
+          settings:
+            state: '!visible'
+            condition: '!checked'
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              value: false
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: event
     type: media_library_widget
     region: content
   field_registration_link:
-    weight: 6
+    weight: 7
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -115,7 +158,7 @@ content:
     region: content
   path:
     type: path
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -123,21 +166,21 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 12
     region: content
     third_party_settings: {  }
   status:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 14
+    weight: 15
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 12
+    weight: 13
     region: content
     third_party_settings: {  }
   title:
@@ -150,7 +193,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 9
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
