@@ -197,12 +197,12 @@
     {% endblock %}
   {% endif %}
 
-  {% if page.footer_one and page.footer_two and page.footer_three and page.footer_four %}
+  {% if page.footer_one and page.footer_two and page.footer_three and page.footer_four and page.footer_five and page.footer_six %}
     {# col-md-3 #}
-    {% set footercol_classes = 'col-md-3' %}
+    {% set footercol_classes = 'col-md-4, col-lg-2' %}
   {% endif %}
 
-  {% if page.footer_one and page.footer_two and (page.footer_three is empty or page.footer_four is empty) %}
+  {% if page.footer_one and page.footer_two and (page.footer_three is empty or page.footer_four is empty) and (page.footer_five is empty and page.footer_six is empty) %}
     {% set footercol_classes = 'col-md-4' %}
   {% endif %}
 
@@ -251,6 +251,22 @@
     <div class="footsy {{ footercol_classes }}">
       {% block footer_four %}
         {{ page.footer_four }}
+      {% endblock %}
+    </div>
+  {% endif %}
+
+    {% if page.footer_five %}
+    <div class="footsy {{ footercol_classes }}">
+      {% block footer_five %}
+        {{ page.footer_five }}
+      {% endblock %}
+    </div>
+  {% endif %}
+
+    {% if page.footer_six %}
+    <div class="footsy {{ footercol_classes }}">
+      {% block footer_six %}
+        {{ page.footer_six }}
       {% endblock %}
     </div>
   {% endif %}
