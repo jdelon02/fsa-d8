@@ -23,6 +23,8 @@ regions:
   footer_two: 'Footer Column 2'
   footer_three: 'Footer Column 3'
   footer_four: 'Footer Column 4'
+  footer_five: 'Footer Column 5'
+  footer_six: 'Footer Column 6'
   footer_abs_bottom: 'Footer Abs Bottom'
   page_top: 'Page top'
   page_bottom: 'Page bottom'
