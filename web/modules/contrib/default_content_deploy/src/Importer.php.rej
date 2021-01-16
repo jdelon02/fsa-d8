@@ -1,54 +1,32 @@
-***************
-*** 284,293 ****
-     */
-    protected function preDecode(&$data) {
-      // Init variables.
--     $pattern_first = '/"http:\\\\\/\\\\\/(.*?)": \[/';
-      $pattern_second = '/ "href": "(.*?)"/';
-      $pattern_link_first = '/:\\\\\/\\\\\/(.*?)\\\\\//';
--     $pattern_link_second = '/ "href": "http:\\\\\/\\\\\/(.*?)\\\\\//';
-  
-      // Replace host in the all links.
-      $this->replaceHost($pattern_first, $pattern_link_first, $data);
---- 284,293 ----
-     */
-    protected function preDecode(&$data) {
-      // Init variables.
-+     $pattern_first = '/"http(s*):\\\\\/\\\\\/(.*?)": \[/';
-      $pattern_second = '/ "href": "(.*?)"/';
-      $pattern_link_first = '/:\\\\\/\\\\\/(.*?)\\\\\//';
-+     $pattern_link_second = '/ "href": "http(s*):\\\\\/\\\\\/(.*?)\\\\\//';
-  
-      // Replace host in the all links.
-      $this->replaceHost($pattern_first, $pattern_link_first, $data);
-***************
-*** 483,495 ****
-     */
-    private function replaceHost($pattern, $pattern_link, &$data) {
-      $host = $this->request->getHttpHost();
-      preg_match_all($pattern, $data, $match);
-  
-      foreach ($match[0] as $origin_str) {
-        preg_match($pattern_link, $origin_str, $match_host);
-  
-        if (!empty($match_host)) {
--         $valid_str = str_replace($match_host[1], $host, $origin_str);
-          $data = str_replace($origin_str, $valid_str, $data);
-        }
-      }
---- 483,497 ----
-     */
-    private function replaceHost($pattern, $pattern_link, &$data) {
-      $host = $this->request->getHttpHost();
-+     $protocol = $this->request->getScheme();
-      preg_match_all($pattern, $data, $match);
-  
-      foreach ($match[0] as $origin_str) {
-        preg_match($pattern_link, $origin_str, $match_host);
-  
-        if (!empty($match_host)) {
-+         $valid_str = str_replace(end($match_host), $host, $origin_str);
-+         $valid_str = preg_replace('/(http:|https:)/', "{$protocol}:", $valid_str);
-          $data = str_replace($origin_str, $valid_str, $data);
-        }
-      }
+--- src/Importer.php
++++ src/Importer.php
+@@ -284,10 +284,10 @@ class Importer extends DCImporter {
+    */
+   protected function preDecode(&$data) {
+     // Init variables.
+-    $pattern_first = '/"http:\\\\\/\\\\\/(.*?)": \[/';
++    $pattern_first = '/"http(s*):\\\\\/\\\\\/(.*?)": \[/';
+     $pattern_second = '/ "href": "(.*?)"/';
+     $pattern_link_first = '/:\\\\\/\\\\\/(.*?)\\\\\//';
+-    $pattern_link_second = '/ "href": "http:\\\\\/\\\\\/(.*?)\\\\\//';
++    $pattern_link_second = '/ "href": "http(s*):\\\\\/\\\\\/(.*?)\\\\\//';
+ 
+     // Replace host in the all links.
+     $this->replaceHost($pattern_first, $pattern_link_first, $data);
+@@ -483,13 +483,15 @@ class Importer extends DCImporter {
+    */
+   private function replaceHost($pattern, $pattern_link, &$data) {
+     $host = $this->request->getHttpHost();
++    $protocol = $this->request->getScheme();
+     preg_match_all($pattern, $data, $match);
+ 
+     foreach ($match[0] as $origin_str) {
+       preg_match($pattern_link, $origin_str, $match_host);
+ 
+       if (!empty($match_host)) {
+-        $valid_str = str_replace($match_host[1], $host, $origin_str);
++        $valid_str = str_replace(end($match_host), $host, $origin_str);
++        $valid_str = preg_replace('/(http:|https:)/', "{$protocol}:", $valid_str);
+         $data = str_replace($origin_str, $valid_str, $data);
+       }
+     }
