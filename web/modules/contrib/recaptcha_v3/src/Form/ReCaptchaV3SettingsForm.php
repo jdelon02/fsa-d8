@@ -165,6 +165,7 @@ class ReCaptchaV3SettingsForm extends ConfigFormBase {
       ->set('verify_hostname', $values['verify_hostname'])
       ->set('default_challenge', $values['default_challenge'])
       ->set('error_message', $values['error_message'])
+      ->set('cacheable', $values['cacheable'])
       ->save();
 
     parent::submitForm($form, $form_state);
