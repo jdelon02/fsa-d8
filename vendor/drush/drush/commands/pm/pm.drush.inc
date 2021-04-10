@@ -314,7 +314,8 @@ function pm_drush_command() {
     'outputformat' => array(
       'default' => 'table',
       'pipe-format' => 'list',
-      'field-labels' => array('package' => 'Package', 'name' => 'Name', 'type' => 'Type', 'status' => 'Status', 'version' => 'Version'),
+      'fields-default' => array('package', 'name', 'type', 'status', 'version'),
+      'field-labels' => array('package' => 'Package', 'project' => 'Project', 'name' => 'Name', 'display_name' => 'Display Name', 'type' => 'Type', 'status' => 'Status', 'version' => 'Version', 'path' => 'Path'),
       'output-data-type' => 'format-table',
     ),
     'aliases' => array('pml', 'pm:list'),
@@ -946,9 +947,12 @@ function drush_pm_list() {
     }
 
     $row['package'] = $extension->info['package'];
+    $row['project'] = isset($extension->info['project']) ? $extension->info['project'] : '';
+    $row['display_name'] = $extension->label;
     $row['name'] = $extension->label;
     $row['type'] = ucfirst(drush_extension_get_type($extension));
     $row['status'] = ucfirst($status);
+    $row['path'] = drush_extension_get_path($extension);
     // Suppress notice when version is not present.
     $row['version'] = @$extension->info['version'];
 
@@ -2245,7 +2249,8 @@ function drush_find_empty_directories($dir, $exclude = array()) {
 function drush_pm_inject_info_file_metadata($project_dir, $project_name, $version, $datestamp) {
   // `drush_drupal_major_version()` cannot be used here because this may be running
   // outside of a Drupal context.
-  $yaml_format = substr($version, 0, 1) >= 8;
+  $regex = '/((\d*)\.\d*\.[\dx]*-?.*)|([89]\.x-\d*\.[\dx]*.*)/';
+  $yaml_format = preg_match($regex, $version);
   $pattern = preg_quote($yaml_format ? '.info.yml' : '.info');
   $info_files = drush_scan_directory($project_dir, '/.*' . $pattern . '$/');
   if (!empty($info_files)) {
