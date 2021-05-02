@@ -95,7 +95,7 @@ class BlocksController extends ControllerBase {
       StructureSyncHelper::logMessage('Exported "' . $customBlock['info'] . '"');
     }
 
-    drupal_set_message($this->t('The custom blocks have been successfully exported.'));
+    $this->messenger()->addStatus($this->t('The custom blocks have been successfully exported.'));
     StructureSyncHelper::logMessage('Custom blocks exported');
   }
 
@@ -434,7 +434,7 @@ class BlocksController extends ControllerBase {
 
     StructureSyncHelper::logMessage('Successfully imported custom blocks');
 
-    drupal_set_message(t('Successfully imported custom blocks'));
+    \Drupal::messenger()->addStatus(t('Successfully imported custom blocks'));
   }
 
 }
