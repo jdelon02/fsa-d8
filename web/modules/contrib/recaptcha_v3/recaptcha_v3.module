@@ -13,6 +13,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\recaptcha_v3\ReCaptchaV3ActionInterface;
 use ReCaptcha\ReCaptcha;
+use ReCaptcha\RequestMethod\CurlPost;
 
 /**
  * Implements hook_help().
@@ -84,9 +85,9 @@ function recaptcha_v3_element_info_alter(array &$info) {
 function recaptcha_v3_pre_captcha_element_process(array &$element, FormStateInterface $form_state, array &$complete_form) {
   // If form is processed input then recaptcha v3 response should be in
   // form values and need replace reCAPTCHA v3 element by fallback
-  // challenge before captcha module lement process callback, because otherwise
-  // in case of error form will not rebuild and recaptcha v3 element will
-  // return again.
+  // challenge before captcha module element process callback, because,
+  // otherwise, in case of error, form will not rebuild
+  // and recaptcha v3 element will return again.
   if ($form_state->isProcessingInput()) {
 
     \Drupal::moduleHandler()->loadInclude('captcha', 'inc', 'captcha');
@@ -126,6 +127,7 @@ function recaptcha_v3_captcha($op, $captcha_type = '', $captcha_sid = NULL) {
         $captcha['form']['captcha_response'] = [
           '#type' => 'hidden',
           '#default_value' => '',
+          '#recaptcha_v3' => TRUE,
           '#attributes' => [
             // Need add id, because element should have id or
             // 'selector' property should exist in #ajax array
@@ -144,6 +146,11 @@ function recaptcha_v3_captcha($op, $captcha_type = '', $captcha_sid = NULL) {
             'callback' => 'recaptcha_v3_ajax_callback',
             'event' => 'change',
           ],
+        ];
+        // Flag that indicates that current captcha element is recaptcha_v3.
+        $captcha['form']['is_recaptcha_v3'] = [
+          '#type' => 'hidden',
+          '#value' => 1,
         ];
         $captcha['solution'] = TRUE;
         $captcha['captcha_validate'] = 'recaptcha_v3_validate';
@@ -169,8 +176,18 @@ function recaptcha_v3_captcha($op, $captcha_type = '', $captcha_sid = NULL) {
  *   Set recaptcha v3 challenge if not already validated.
  */
 function recaptcha_v3_post_captcha_element_process(array &$element, FormStateInterface $form_state, array &$complete_form) {
-  if ($form_state->getTemporaryValue('recaptcha_v3_action_name') && !$form_state->has('recaptcha_v3')) {
-    $element['#captcha_validate'] = 'recaptcha_v3_validate';
+  // If value exist, then form was submitted.
+  if ($form_state->getTemporaryValue('recaptcha_v3_action_name')) {
+    $user_input = $form_state->getUserInput();
+    // If value is empty, then fallback widget already used and no need to
+    // run recaptcha v3 validation.
+    if (!empty($user_input['is_recaptcha_v3'])) {
+      $element['#captcha_validate'] = 'recaptcha_v3_validate';
+    }
+  }
+  // Hide description for the recaptcha v3 captcha element.
+  if (!empty($element['captcha_widgets']['captcha_response']['#recaptcha_v3'])) {
+    unset($element['#description']);
   }
   return $element;
 }
@@ -179,18 +196,14 @@ function recaptcha_v3_post_captcha_element_process(array &$element, FormStateInt
  * CAPTCHA Callback; Validates the reCAPTCHA v3 code.
  */
 function recaptcha_v3_validate($solution, $captcha_response, $element, FormStateInterface $form_state) {
-  // reCAPTCHA v3 was verified in one of the previous request.
-  if ($form_state->has('recaptcha_v3')) {
-    return (bool) $form_state->get(['recaptcha_v3', 'success']);
-  }
-  // Using user input instead of $captcha_response variable, because stupid
-  // recaptcha module wrongly use 'captcha_response' form element -
-  // instead of '#default_value' it using '#value' form api key:
+  // Using user input instead of $captcha_response variable, because
+  // recaptcha using '#value' form api key for the 'captcha_response' form
+  // element:
   // $captcha['form']['captcha_response'] = [
   //  '#type' => 'hidden',
   //  '#value' => 'Google no captcha', // Problem is here
   // ];
-  // so if using recaptcha as fallback challenge, $captcha_response is always
+  // So if using recaptcha as fallback challenge, $captcha_response is always
   // have 'Google no captcha' value.
   $user_input = $form_state->getUserInput();
   if (!empty($user_input['captcha_response'])) {
@@ -198,38 +211,56 @@ function recaptcha_v3_validate($solution, $captcha_response, $element, FormState
   }
 
   $captcha_type_challenge = $form_state->getTemporaryValue('recaptcha_v3_action_name');
-  // Verify submitted reCAPTCHA v3 token.
+  /** @var ReCaptchaV3ActionInterface $recaptcha_v3 */
   $recaptcha_v3 = ReCaptchaV3Action::load($captcha_type_challenge) ?? ReCaptchaV3Action::create([
     'id' => '',
     'label' => '',
     'threshold' => 1,
     'challenge' => 'default',
   ]);
+  // Verify submitted reCAPTCHA v3 token.
   $verification_response = _recaptcha_v3_verify_captcha_response($recaptcha_v3, $captcha_response);
 
   if (!$verification_response['success']) {
     // If we here, then token verification failed.
     if ($verification_response['error-codes']) {
       $errors = [];
+
+      $challenge = $recaptcha_v3->getChallenge();
+      if ($challenge === 'default') {
+        $challenge = \Drupal::config('recaptcha_v3.settings')
+          ->get('default_challenge');
+      }
+
       foreach ($verification_response['error-codes'] as $code) {
+        // If we have fallback challenge then do not log the threshold errors.
+        if ($challenge && $code === 'score-threshold-not-met') {
+          continue;
+        }
         $errors[] = recaptcha_v3_error_by_code($code);
       }
-      $errors_string = implode(' ', $errors);
-      \Drupal::logger('recaptcha_v3')->error('Google reCAPTCHA v3 validation failed: @error', ['@error' => $errors_string]);
+
+      if ($errors) {
+        $errors_string = implode(' ', $errors);
+        \Drupal::logger('recaptcha_v3')->error(
+          'Google reCAPTCHA v3 validation failed: @error',
+          ['@error' => $errors_string]
+        );
+      }
     }
-    $form_state->clearErrors();
+
     $error_message = \Drupal::config('recaptcha_v3.settings')
       ->get('error_message');
-    if ($error_message) {
-      $form_state->setErrorByName('captcha_response', $error_message);
-    }
   }
-  else {
+
+  // If captcha validated, then need to remove error related to the
+  // captcha_response element. Otherwise, for example, if fallback is
+  // captcha Math we will get error about exceeding input value length due to
+  // recaptcha v3 response is much longer than allowed for Math captcha.
+  // In another case if we have custom error message, then need to clear
+  // all current 'captcha_response' element error messages either.
+  if ($verification_response['success'] || !empty($error_message)) {
     $errors = $form_state->getErrors();
-    // If captcha validated, then need to remove error related to the
-    // captcha_response element. Otherwise, for example, if fallback is
-    // captcha Math we will get error about exceeding input value length due to
-    // recaptcha v3 response is much longer than allowed for Math captcha.
     if (isset($errors['captcha_response'])) {
       $form_state->clearErrors();
       foreach ($errors as $name => $error) {
@@ -239,15 +270,10 @@ function recaptcha_v3_validate($solution, $captcha_response, $element, FormState
       }
     }
   }
-  // Save captcha response in $form_state storage to prevent
-  // further validation requests.
-  $form_state->set('recaptcha_v3', $verification_response);
 
-  // Need to cache form, because previous line does not make sense
-  // because form will not cached otherwise. Probably this is wrong because
-  // if form set for rebuilding it will not cached anyway.
-  // @todo need to check if need to move next line to the element preprocess callback.
-  $form_state->setCached();
+  if(!empty($error_message)) {
+    $form_state->setErrorByName('captcha_response', $error_message);
+  }
 
   return (bool) $verification_response['success'];
 }
@@ -284,7 +310,7 @@ function recaptcha_v3_ajax_callback(array $form, FormStateInterface $form_state)
 function _recaptcha_v3_verify_captcha_response(ReCaptchaV3ActionInterface $recaptcha_v_3_action, $captcha_response) {
   $request = Drupal::request();
   $config = Drupal::config('recaptcha_v3.settings');
-  $recaptcha = new ReCaptcha($config->get('secret_key'));
+  $recaptcha = new ReCaptcha($config->get('secret_key'), function_exists('curl_version') ? new CurlPost() : null);
 
   if ($config->get('verify_hostname')) {
     $recaptcha->setExpectedHostname($request->getHost());
