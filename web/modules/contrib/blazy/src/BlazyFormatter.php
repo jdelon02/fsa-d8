@@ -3,16 +3,9 @@
 namespace Drupal\blazy;
 
 /**
- * Implements BlazyFormatterInterface.
+ * Provides common field formatter-related methods: Blazy, Slick.
  */
 class BlazyFormatter extends BlazyManager implements BlazyFormatterInterface {
-
-  /**
-   * The first image item found.
-   *
-   * @var object
-   */
-  protected $firstItem = NULL;
 
   /**
    * Checks if image dimensions are set.
@@ -61,7 +54,17 @@ class BlazyFormatter extends BlazyManager implements BlazyFormatterInterface {
     // @see #2596385, or fetch the host entity.
     if (!$entity->isNew() && method_exists($entity, 'hasLinkTemplate')) {
       if ($entity->hasLinkTemplate('canonical')) {
-        $url = $entity->toUrl();
+
+        // Check if multilingual is enabled (@see #3214002).
+        if ($this->languageManager->isMultilingual()) {
+          // Load the translated url.
+          $url = $entity->getTranslation($settings['current_language'])->toUrl();
+        }
+        else {
+          // Otherwise keep the standard url.
+          $url = $entity->toUrl();
+        }
+
         $internal_path = $url->getInternalPath();
         $absolute_path = $url->setAbsolute()->toString();
       }
@@ -110,7 +113,7 @@ class BlazyFormatter extends BlazyManager implements BlazyFormatterInterface {
       if (empty($settings['resimage'])) {
         $this->setImageDimensions($settings);
       }
-      elseif (!empty($settings['resimage']) && $settings['ratio'] == 'fluid') {
+      elseif (!empty($settings['resimage']) && !empty($settings['ratio']) && $settings['ratio'] == 'fluid') {
         $this->setResponsiveImageDimensions($settings);
       }
     }
@@ -123,7 +126,7 @@ class BlazyFormatter extends BlazyManager implements BlazyFormatterInterface {
    * {@inheritdoc}
    */
   public function postBuildElements(array &$build, $items, array $entities = []) {
-    $build['settings']['_item'] = $this->firstItem;
+    // Do nothing.
   }
 
   /**
@@ -131,16 +134,20 @@ class BlazyFormatter extends BlazyManager implements BlazyFormatterInterface {
    */
   public function extractFirstItem(array &$settings, $item, $entity = NULL) {
     if ($settings['field_type'] == 'image') {
-      $this->firstItem = $item;
+      $settings['_item'] = $item;
       $settings['_uri'] = ($file = $item->entity) && empty($item->uri) ? $file->getFileUri() : $item->uri;
     }
     elseif ($entity && $entity->hasField('thumbnail') && $image = $entity->get('thumbnail')->first()) {
-      $this->firstItem = $image;
-      $settings['_uri'] = $image->entity->getFileUri();
+      if (isset($image->entity) && $file = $image->entity) {
+        $settings['_item'] = $image;
+        $settings['_uri'] = $file->getFileUri();
+      }
     }
 
     // The first image dimensions to differ from individual item dimensions.
-    BlazyUtil::imageDimensions($settings, $this->firstItem, TRUE);
+    if (!empty($settings['_item'])) {
+      BlazyUtil::imageDimensions($settings, $settings['_item'], TRUE);
+    }
   }
 
   /**
