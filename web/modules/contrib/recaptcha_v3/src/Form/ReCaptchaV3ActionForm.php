@@ -57,6 +57,7 @@ class ReCaptchaV3ActionForm extends EntityForm {
     $form['id'] = [
       '#type' => 'machine_name',
       '#default_value' => $recaptcha_v3_action->id(),
+      '#required' => TRUE,
       '#machine_name' => [
         'exists' => [ReCaptchaV3Action::class, 'load'],
       ],
@@ -69,6 +70,7 @@ class ReCaptchaV3ActionForm extends EntityForm {
       '#min' => 0,
       '#max' => 1,
       '#step' => 0.1,
+      '#required' => TRUE,
       '#default_value' => $recaptcha_v3_action->getThreshold(),
     ];
 
