@@ -40,13 +40,18 @@ class WebformElementOtherTest extends WebformElementBrowserTestBase {
     $this->assertRaw('<select data-webform-required-error="This is a custom required error message." data-drupal-selector="edit-select-other-advanced-select" id="edit-select-other-advanced-select" name="select_other_advanced[select]" class="form-select required" required="required" aria-required="true">');
     $this->assertRaw('<option value="_other_" selected="selected">Is there another option you wish to enter?</option>');
     $this->assertRaw('<label for="edit-select-other-advanced-other">Other</label>');
-    $this->assertRaw('<input data-webform-required-error="This is a custom required error message." data-counter-type="character" data-counter-minimum="4" data-counter-maximum="10" class="js-webform-counter webform-counter form-text" data-drupal-selector="edit-select-other-advanced-other" aria-describedby="edit-select-other-advanced-other--description" type="text" id="edit-select-other-advanced-other" name="select_other_advanced[other]" value="Four" size="20" maxlength="10" placeholder="What is this other option" />');
+    $this->assertRaw('<input data-webform-required-error="This is a custom required error message." data-counter-type="character" data-counter-minimum="4" data-counter-maximum="10" class="js-webform-counter webform-counter form-text" minlength="4" data-drupal-selector="edit-select-other-advanced-other" aria-describedby="edit-select-other-advanced-other--description" type="text" id="edit-select-other-advanced-other" name="select_other_advanced[other]" value="Four" size="20" maxlength="10" placeholder="What is this other option" />');
     $this->assertRaw('<div id="edit-select-other-advanced-other--description" class="webform-element-description">Other select description</div>');
 
     // Check multiple select_other.
     $this->assertRaw('<span class="fieldset-legend">Select other multiple</span>');
     $this->assertRaw('<select data-drupal-selector="edit-select-other-multiple-select" multiple="multiple" name="select_other_multiple[select][]" id="edit-select-other-multiple-select" class="form-select">');
     $this->assertRaw('<input data-drupal-selector="edit-select-other-multiple-other" type="text" id="edit-select-other-multiple-other" name="select_other_multiple[other]" value="Four" size="60" maxlength="255" placeholder="Enter other…" class="form-text" />');
+
+    // Check select_other with zero (0) as the default value.
+    $this->assertRaw('<span class="fieldset-legend">Select other zero</span>');
+    $this->assertRaw('<select data-drupal-selector="edit-select-other-zero-select" id="edit-select-other-zero-select" name="select_other_zero[select]" class="form-select">');
+    $this->assertRaw('<input data-drupal-selector="edit-select-other-zero-other" type="text" id="edit-select-other-zero-other" name="select_other_zero[other]" value="0" size="60" maxlength="255" placeholder="Enter other…" class="form-text" />');
 
     /**************************************************************************/
     // checkboxes_other
@@ -98,6 +103,32 @@ class WebformElementOtherTest extends WebformElementBrowserTestBase {
    */
   public function testProcessingOtherElements() {
     $webform = Webform::load('test_element_other');
+
+    /**************************************************************************/
+    // Basic input processing.
+    /**************************************************************************/
+
+    $this->postSubmission($webform);
+    $this->assertRaw("select_other_basic: Four
+select_other_advanced: Four
+select_other_multiple:
+  - One
+  - Two
+  - Four
+select_other_zero: '0'
+checkboxes_other_basic:
+  - One
+  - Two
+  - Four
+checkboxes_other_advanced:
+  - One
+  - Two
+  - Four
+radios_other_basic: Four
+radios_other_advanced: Four
+wrapper_other_fieldset: ''
+wrapper_other_form_element: ''
+wrapper_other_container: ''");
 
     /**************************************************************************/
     // select_other
