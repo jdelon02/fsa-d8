@@ -169,6 +169,12 @@ abstract class BlazyAdminFormatterBase extends BlazyAdminBase {
       }
     }
 
+    if (empty($settings['media_switch'])) {
+      foreach (['box_style', 'box_media_style', 'box_caption'] as $key) {
+        $excludes[$key] = TRUE;
+      }
+    }
+
     // Remove exluded settings.
     foreach ($excludes as $key => $value) {
       if (isset($settings[$key])) {
@@ -203,7 +209,10 @@ abstract class BlazyAdminFormatterBase extends BlazyAdminBase {
     $excludes = $this->getExcludedFieldOptions();
 
     foreach ($target_bundles as $bundle => $label) {
-      if ($fields = $storage->loadByProperties(['entity_type' => $entity_type, 'bundle' => $bundle])) {
+      if ($fields = $storage->loadByProperties([
+        'entity_type' => $entity_type,
+        'bundle' => $bundle,
+      ])) {
         foreach ((array) $fields as $field) {
           if (in_array($field->getName(), $excludes)) {
             continue;
