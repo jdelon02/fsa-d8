@@ -86,6 +86,15 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
 
     $libraries = $this->getLibraries();
 
+    // Defined REQUIREMENT constants which may not be loaded.
+    // @see /private/var/www/sites/d8_webform/web/core/includes/install.inc
+    if (!defined('REQUIREMENT_OK')) {
+      define('REQUIREMENT_INFO', -1);
+      define('REQUIREMENT_OK', 0);
+      define('REQUIREMENT_WARNING', 1);
+      define('REQUIREMENT_ERROR', 2);
+    }
+
     // Track stats.
     $severity = REQUIREMENT_OK;
     $stats = [
@@ -158,17 +167,26 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
         '#suffix' => '</dt>',
       ];
       $info[$library_name]['description'] = [
-        'content' => [
-          '#markup' => $description,
-        ],
-        'status' => (!empty($library['deprecated'])) ? [
-          '#markup' => $library['deprecated'],
-          '#prefix' => '<div class="color-warning"><strong>',
-          '#suffix' => '</strong></div>',
-        ] : [],
         '#prefix' => '<dd>',
         '#suffix' => '</dd>',
       ];
+      $info[$library_name]['description']['content'] = [
+        '#markup' => $description,
+      ];
+      if (!empty($library['notes'])) {
+        $info[$library_name]['description']['notes'] = [
+          '#markup' => $library['notes'],
+          '#prefix' => '<div><em>(',
+          '#suffix' => '}</em></div>',
+        ];
+      }
+      if (!empty($library['deprecated'])) {
+        $info[$library_name]['description']['status'] = [
+          '#markup' => $library['deprecated'],
+          '#prefix' => '<div class="color-warning"><strong>',
+          '#suffix' => '</strong></div>',
+        ];
+      }
     }
 
     // Description.
@@ -329,9 +347,10 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
       'description' => $this->t('Code Mirror is a versatile text editor implemented in JavaScript for the browser.'),
       'notes' => $this->t('Code Mirror is used to provide a text editor for YAML, HTML, CSS, and JavaScript configuration settings and messages.'),
       'homepage_url' => Url::fromUri('http://codemirror.net/'),
-      'download_url' => Url::fromUri('https://github.com/components/codemirror/archive/5.57.0.zip'),
+      // Issue #3177233: CodeMirror 5.70.0 is displaying vertical scrollbar.
+      'download_url' => Url::fromUri('https://github.com/components/codemirror/archive/5.61.1.zip'),
       'issues_url' => Url::fromUri('https://github.com/codemirror/codemirror/issues'),
-      'version' => '5.57.0',
+      'version' => '5.61.1',
     ];
     $libraries['algolia.places'] = [
       'title' => $this->t('Algolia Places'),
@@ -351,8 +370,8 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
       'description' => $this->t('Input masks ensures a predefined format is entered. This can be useful for dates, numerics, phone numbers, etc…'),
       'notes' => $this->t('Input masks are used to ensure predefined and custom formats for text fields.'),
       'homepage_url' => Url::fromUri('https://robinherbots.github.io/Inputmask/'),
-      'download_url' => Url::fromUri('https://github.com/RobinHerbots/jquery.inputmask/archive/5.0.5.zip'),
-      'version' => '5.0.5',
+      'download_url' => Url::fromUri('https://github.com/RobinHerbots/jquery.inputmask/archive/5.0.6.zip'),
+      'version' => '5.0.6',
     ];
     $libraries['jquery.intl-tel-input'] = [
       'title' => $this->t('jQuery: International Telephone Input'),
@@ -384,8 +403,8 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
       'description' => $this->t('A lightweight, customizable javascript timepicker plugin for jQuery, inspired by Google Calendar.'),
       'notes' => $this->t('Timepicker is used to provide a polyfill for HTML 5 time elements.'),
       'homepage_url' => Url::fromUri('https://github.com/jonthornton/jquery-timepicker'),
-      'download_url' => Url::fromUri('https://github.com/jonthornton/jquery-timepicker/archive/1.13.14.zip'),
-      'version' => '1.13.14',
+      'download_url' => Url::fromUri('https://github.com/jonthornton/jquery-timepicker/archive/1.13.18.zip'),
+      'version' => '1.13.18',
     ];
     $libraries['progress-tracker'] = [
       'title' => $this->t('Progress Tracker'),
