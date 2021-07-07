@@ -16,6 +16,10 @@ title: 'Test: Translations'
 description: 'Test translating a webform.'
 category: null
 elements: |
+  variant:
+    '#type': webform_variant
+    '#title': Variant
+    '#variant': override
   textfield:
     '#type': textfield
     '#title': 'Text field'
@@ -59,6 +63,19 @@ elements: |
     '#type': webform_computed_token
     '#title': 'Computed (token)'
     '#value': 'Site name: [site:name]'
+  autocomplete_options:
+    '#type': autocomplete
+    '#title': 'Autocomplete (options)'
+    '#format_items': comma
+    '#autocomplete_items': test_translation
+  autocomplete_custom:
+    '#type': autocomplete
+    '#title': 'Autocomplete (custom)'
+    '#format_items': comma
+    '#autocomplete_items':
+      - Seven
+      - Eight
+      - Nine
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
@@ -193,6 +210,7 @@ settings:
   results_customize: false
   token_view: false
   token_update: false
+  token_delete: false
   serial_disabled: false
 access:
   create:
@@ -279,4 +297,21 @@ handlers:
       return_path: ''
       sender_mail: ''
       sender_name: ''
-variants: {  }
+variants:
+  test:
+    id: override
+    label: Test
+    notes: ''
+    variant_id: test
+    element_key: variant
+    status: true
+    weight: 1
+    settings:
+      settings: {  }
+      elements: |
+        textfield:
+          '#title': 'Text field - Variant'
+          '#type': textarea
+
+      handlers: {  }
+      debug: false

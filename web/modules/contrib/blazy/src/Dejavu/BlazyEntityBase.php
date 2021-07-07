@@ -21,23 +21,19 @@ abstract class BlazyEntityBase extends EntityReferenceFormatterBase {
       static $depth = 0;
       $depth++;
       if ($depth > 20) {
-        $this->loggerFactory->get('entity')->error('Recursive rendering detected when rendering entity @entity_type @entity_id. Aborting rendering.', ['@entity_type' => $entity->getEntityTypeId(), '@entity_id' => $entity->id()]);
+        $this->loggerFactory->get('entity')->error('Recursive rendering detected when rendering entity @entity_type @entity_id. Aborting rendering.', [
+          '@entity_type' => $entity->getEntityTypeId(),
+          '@entity_id' => $entity->id(),
+        ]);
         return $build;
       }
 
       $build['settings']['delta'] = $delta;
       $build['settings']['langcode'] = $langcode;
-      if ($entity->id()) {
-        $this->buildElement($build, $entity, $langcode);
+      $this->buildElement($build, $entity, $langcode);
 
-        // Add the entity to cache dependencies so to clear when it is updated.
-        $this->formatter()->getRenderer()->addCacheableDependency($build['items'][$delta], $entity);
-      }
-      else {
-        $this->referencedEntities = NULL;
-        // This is an "auto_create" item.
-        $build['items'][$delta] = ['#markup' => $entity->label()];
-      }
+      // Add the entity to cache dependencies so to clear when it is updated.
+      $this->formatter()->getRenderer()->addCacheableDependency($build['items'][$delta], $entity);
 
       $depth = 0;
     }
@@ -80,6 +76,7 @@ abstract class BlazyEntityBase extends EntityReferenceFormatterBase {
    */
   public function getCommonFieldDefinition() {
     $field = $this->fieldDefinition;
+
     return [
       'current_view_mode' => $this->viewMode,
       'field_name'        => $field->getName(),
