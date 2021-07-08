@@ -82,7 +82,7 @@ class MenuLinksController extends ControllerBase {
 
     $this->config->set('menus', $customMenuLinks)->save();
 
-    drupal_set_message($this->t('The menu links have been successfully exported.'));
+    $this->messenger()->addStatus($this->t('The menu links have been successfully exported.'));
     StructureSyncHelper::logMessage('Menu links exported');
   }
 
@@ -460,7 +460,7 @@ class MenuLinksController extends ControllerBase {
 
     StructureSyncHelper::logMessage('Successfully imported menu links');
 
-    drupal_set_message(t('Successfully imported menu links'));
+    \Drupal::messenger()->addStatus(t('Successfully imported menu links'));
   }
 
 }

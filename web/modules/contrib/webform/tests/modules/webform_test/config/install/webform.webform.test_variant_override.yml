@@ -1,4 +1,3 @@
-uuid: null
 langcode: en
 status: open
 dependencies:
@@ -24,7 +23,6 @@ elements: |
   textfield:
     '#type': textfield
     '#title': textfield
-
 css: ''
 javascript: ''
 settings:
@@ -154,6 +152,7 @@ settings:
   results_customize: false
   token_view: false
   token_update: false
+  token_delete: false
   serial_disabled: false
 access:
   create:
@@ -211,7 +210,9 @@ handlers:
     status: false
     conditions: {  }
     weight: 0
-    settings: {  }
+    settings:
+      format: yaml
+      submission: false
 variants:
   settings:
     id: override
@@ -240,7 +241,7 @@ variants:
       elements: |
         textfield:
           '#placeholder': 'This is a placeholder'
-
+        
       handlers: {  }
       debug: true
   handlers:
@@ -258,7 +259,7 @@ variants:
         debug:
           status: true
       debug: true
-  no_results:
+  No-Results:
     id: override
     label: 'No results'
     notes: 'Saving of results is disabled.'
@@ -273,7 +274,7 @@ variants:
       elements: ''
       handlers: {  }
       debug: true
-  custom_form_properties:
+  Custom-Form-Properties:
     id: override
     label: Elements
     notes: 'Alters custom form properties.'
@@ -286,6 +287,6 @@ variants:
       elements: |
         '#method': get
         '#action': 'https://drupal.org'
-
+        
       handlers: {  }
       debug: true

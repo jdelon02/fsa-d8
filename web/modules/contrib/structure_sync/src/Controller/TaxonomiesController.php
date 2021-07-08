@@ -54,7 +54,7 @@ class TaxonomiesController extends ControllerBase {
     if (!count($vocabulary_list)) {
       StructureSyncHelper::logMessage('No vocabularies available', 'warning');
 
-      drupal_set_message($this->t('No vocabularies selected/available'), 'warning');
+      $this->messenger()->addWarning($this->t('No vocabularies selected/available'));
       return;
     }
 
@@ -149,7 +149,7 @@ class TaxonomiesController extends ControllerBase {
       StructureSyncHelper::logMessage('Exported ' . $vocabulary);
     }
 
-    drupal_set_message($this->t('The taxonomies have been successfully exported.'));
+    $this->messenger()->addStatus($this->t('The taxonomies have been successfully exported.'));
     StructureSyncHelper::logMessage('Taxonomies exported');
   }
 
@@ -819,7 +819,7 @@ class TaxonomiesController extends ControllerBase {
   public static function taxonomiesImportFinishedCallback($success, $results, $operations) {
     StructureSyncHelper::logMessage('Successfully imported taxonomies');
 
-    drupal_set_message(t('Successfully imported taxonomies'));
+    \Drupal::messenger()->addStatus(t('Successfully imported taxonomies'));
   }
 
 }
