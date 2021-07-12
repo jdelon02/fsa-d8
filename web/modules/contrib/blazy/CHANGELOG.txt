@@ -1,4 +1,147 @@
 
+Blazy 8.x-2.0-dev, 2021-06-17
+-----------------------------
+- Issue #3213258 by gausarts: Remove obsolete "Native browser lazy load.
+- Reverted tests ::setup method due to causing failing tests at sub-modules.
+- Issue #3218962 by gausarts, wrd: Problem with optionset checkboxes in "Gin"
+  admin theme.
+
+Blazy 8.x-2.0-dev, 2021-06-15
+-----------------------------
+- Issue #3214002 by Anybody, gausarts, FiNeX: Media switcher output doesn'\''t
+  work with i18n.
+
+Blazy 8.x-2.0-dev, 2021-06-07
+-----------------------------
+- Issue #3214002 by gausarts, FiNeX: Media switcher output doesn'\''t work with
+  i18n.
+- Issue #3217404 by justanothermark: Incorrect URI built for sites with base
+  path.
+
+Blazy 8.x-2.0-dev, 2021-05-31
+-----------------------------
+- Added a common config entity to DRY for Slick, Splide, ElevateZoomPLus,
+  GridStack, etc.
+- Issue #3214001 by Vinay15: Label is displayed for a newly created Paragraph
+  entity instead of its preview in layout builder
+- Added rendered_entity field to support navigation with Vanilla option for the
+  new Splide module.
+
+Blazy 8.x-2.0-dev, 2021-05-11
+-----------------------------
+- Issue #3213260 by gausarts: Leverage asynchronous "decoding" HTML attribute
+  for improved performance.
+
+Blazy 8.x-2.0-dev, 2021-05-09
+-----------------------------
+- Added autoplay for local video within lightbox to save another click.
+- Fixed for fatal _responsive_image_build_source_attributes if file is missing.
+- Fixed for Blazy Filter hard-coded image url without dimensions and file API.
+- Reverted the revert as per https://drupal.org/node/3210636#comment-14097266.
+- Added BC for non-oembed such as Video Embed Field without Media migration.
+- Reverted video lightbox checks to 2.1.
+
+Blazy 8.x-2.0-dev, 2021-05-08
+-----------------------------
+- Added (Responsive) image style as fallbacks to Blazy Filter.
+
+Blazy 8.x-2.0-dev, 2021-05-05
+-----------------------------
+- Added Lightbox image style option with Responsive image to Blazy Filter.
+- Fixed for Responsive image overflow sizes within Colorbox.
+- Issue #3212194 by gausarts: Supports Responsive image for lightboxes.
+- Reverted the forgotten $settings['blazy_data']['dimensions'] = $srcset;
+
+Blazy 8.x-2.0-dev, 2021-05-04
+-----------------------------
+- Changed video_embed_media to video_embed_field to support manual or drush.
+
+Blazy 8.x-2.0-dev, 2021-05-01
+-----------------------------
+- Issue #3190087 by gausarts, playful: Blazy Filter HTML caption added via text
+  editor being stripped out.
+- Fixed for Undefined property: Drupal\views\ViewExecutable::$row_index required
+  by by Drupal\views\Plugin\views\field\EntityField->prepareItemsByDelta.
+
+Blazy 8.x-2.0-dev, 2021-04-30
+-----------------------------
+- Issue #3211636 by gausarts, timlie, jacklee0410: Regressions with lightbox
+  dimensions.
+- Issue #3210344 by gausarts, manarak: Broken CSS background and responsive
+  image styles with aspect ratio Fluid.
+
+Blazy 8.x-2.0-dev, 2021-04-26
+-----------------------------
+- Issue #3210636 by grathbone: Solution to supporting image-to-iframe embeds for
+  non oembed videos (Video Embed Field)
+
+Blazy 8.x-2.0-dev, 2021-04-24
+-----------------------------
+- Issue #3158152 by manarak, renguer0: Uncaught TypeError: Cannot use '\''in'\''
+
+Blazy 8.x-2.0-dev, 2021-04-14
+-----------------------------
+- Issue #3208686 by Firass Ziedan: Call to a member function getPluginId() on
+  null on taxonomy term pages.
+
+Blazy 8.x-2.0-dev, 2021-04-09
+-----------------------------
+- Issue #3166057 by xavier.masson: Partial clear loading classes after success /
+  error load
+- Issue #3118078 by GaëlG, wells: Compatibility with image styles inside
+  CKEditor
+- Issue #3160061 by gena.io: Replace assertions involving calls to strpos() with
+  more accurate string assertions
+- Issue #3204070 by recrit: Services cache IO settings based on first called
+  attach array
+- Issue #3203933 by recrit: The blazy.formatter service erroneously caches the
+  first item object of the last built field formatter
+- Issue #3174661 by qusai taha, RajabNatshah, markdc, ericdsd, FiNeX: Fix
+  notice: undefined index ratio by check the value if not empty
+- Issue #3167100 by rembrandx, jastraat, Dennis Cohn, gausarts: Element “source”
+  is missing required attribute “srcset”
+- Issue #3173562 by csedax90: Rendered media in Oembed from Paragraph is not
+  translated
+- Issue #3185885 by adevms, Shenron_segamag, FiNeX, NigelCunningham: Rotating
+  blue square doesn'\''t go away
+
+Blazy 8.x-2.0-dev, 2020-06-30
+-----------------------------
+- Issue #3154185 by Corn696: SVG placeholder html validation error space is not
+  allowed.
+- Added supports for reduce motion for vestibular people.
+- Fixed for potential non-integer lightbox dimensions.
+- Added partial supports for rich media lightbox contents.
+- Deprecated .media--loading for .is-b-loading to reuse at non-media.
+
+Blazy 8.x-2.0-dev, 2020-06-21
+-----------------------------
+- Issue #3149843 by Guido_S, gausarts: Support SVG Images.
+
+Blazy 8.x-2.0-dev, 2020-06-20
+-----------------------------
+- Issue #3137757 by gausarts: Blur effect causes extra slow page load after
+  update from 8.x-2.0 to 8.x-2.1.
+
+Blazy 8.x-2.0-dev, 2020-06-18
+-----------------------------
+- Issue #3142503 by gausarts: Add option for native browser lazy load.
+
+Blazy 8.x-2.0-dev, 2020-06-17
+-----------------------------
+- Added supports for field label via Field UI for grid displays.
+- Fixed for Views content/ entity title option being overriden by Image Title.
+- Fixed for placeholder hook_alter not being respected.
+- Fixed for Title label being overridden by Image Title at Views options.
+- Simplified few checks.
+- Issue #3136504 by gausarts, hammerslammer: Endless loading of image which is
+  not found (status 404).
+- Issue #3143794 by gausarts, julianrozor, jrochate: Layout Builder: Error: Call
+  to a member function getFileUri() on null.
+- Issue #3138996 by FiNeX: Check if image style exists to avoid Error.
+- Issue #3135220 by Grimreaper, jhmnieuwenhuis, lindsay.wils: Wrong srcset in
+  responsive image.
+
 Blazy 8.x-2.0-dev, 2020-05-09
 -----------------------------
 - Fixed for rare cases with similar colorbox galleries on a page.
